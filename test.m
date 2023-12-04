@@ -13,7 +13,8 @@ quiver(y(1:end,1),y(1:end,2),gradient(y(1:end,1)),gradient(y(1:end,2)), 'LineWid
 grid on
 set(gca,'TickLabelInterpreter','latex')
 ax = gca;
-ax.FontSize = 20; 
+ax.FontSize = 20;
+title(ax,"2D quiver plot 1");
 xlabel("Species 1",'FontSize',30,Interpreter="latex");
 ylabel("Species 2",'FontSize',30,Interpreter="latex");
 
@@ -23,7 +24,8 @@ quiver(y(1:end,1),y(1:end,3),gradient(y(1:end,1)),gradient(y(1:end,3)), 'LineWid
 grid on
 set(gca,'TickLabelInterpreter','latex')
 ax = gca;
-ax.FontSize = 20; 
+ax.FontSize = 20;
+title(ax,"2D quiver plot 2");
 xlabel("Species 1",'FontSize',30,Interpreter="latex");
 ylabel("Species 3",'FontSize',30,Interpreter="latex");
 
@@ -33,7 +35,8 @@ quiver(y(1:end,2),y(1:end,3),gradient(y(1:end,2)),gradient(y(1:end,3)), 'LineWid
 grid on
 set(gca,'TickLabelInterpreter','latex')
 ax = gca;
-ax.FontSize = 20; 
+ax.FontSize = 20;
+title(ax,"2D quiver plot 3"); 
 xlabel("Species 2",'FontSize',30,Interpreter="latex");
 ylabel("Species 3",'FontSize',30,Interpreter="latex");
 
@@ -42,7 +45,8 @@ plot3(y(:,1),y(:,2),y(:,3));
 grid on
 set(gca,'TickLabelInterpreter','latex')
 ax = gca;
-ax.FontSize = 20; 
+ax.FontSize = 20;
+title(ax,"3D plot");
 xlabel("Species 1",'FontSize',30,Interpreter="latex");
 ylabel("Species 2",'FontSize',30,Interpreter="latex");
 zlabel("Species 3",'FontSize',30,Interpreter="latex");

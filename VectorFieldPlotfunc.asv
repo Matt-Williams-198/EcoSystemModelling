@@ -1,0 +1,26 @@
+function [PopulationChange1, PopulationChange2] = VectorFieldPlotfunc(Population1, ...
+                                                                Population2, ...
+                                                                Prey1GrowthRate, ...
+                                                                Prey2GrowthRate, ...
+                                                                CompetitionCoefficient1, ...
+                                                                CompetitionCoefficient2, ...
+                                                                CarryingCapacity1, ...
+                                                                CarryingCapacity2)
+% Input variables:
+% t - time
+% Population(i) - population i
+% Predator1GrowthRate - growth rate of prey 1, Predator2GrowthRate - growth rate of prey 2
+% CarryingCapacity1 - carrying capacity of prey 1, CarryingCapacity2 - carry capacity of prey 2
+% a - competition of prePopulation 2 on 1, b - competition of prePopulation 1 on 2
+% e1 - growth of predator per prey 1 eaten
+% e2 - growth of predator per prey 2 eaten
+% g - natural death of predator
+% PredationRate1 - attack rate on prey 1, PredationRate2 - attack rate on prey 2
+
+% Output variables:
+% Population(i) - rate of change of population i
+    PopulationChange1 = Prey1GrowthRate .* Population1 .* (1 - (Population1 + CompetitionCoefficent1.* Population2) ./ CarryingCapacity1) - PredationRate1 .* Population1 * PredatorPopulation;
+    PopulationChange2 = Prey2GrowthRate .* Population2 .* (1 - (Population2 + CompetitionCoefficent2.* Population1) ./ CarryingCapacity2) - PredationRate2 .* Population2 * PredatorPopulation;
+    return
+end
+
