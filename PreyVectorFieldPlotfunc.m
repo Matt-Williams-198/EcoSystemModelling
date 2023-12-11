@@ -6,9 +6,10 @@ function [PopulationChange1, PopulationChange2] = PreyVectorFieldPlotfunc(Popula
                                                                     CompetitionCoefficient2, ...
                                                                     CarryingCapacity1, ...
                                                                     CarryingCapacity2, ...
-                                                                    PredatorPopulation, ...
-                                                                    PredationRate1, ...
-                                                                    PredationRate2)
+                                                                    PredatorPopulations, ...
+                                                                    Predation1Rates, ...
+                                                                    Predation2Rates, ...
+                                                                    PredatorCompetitionCoefficients)
 % Input variables:
 % t - time
 % Population(i) - population i
@@ -22,8 +23,12 @@ function [PopulationChange1, PopulationChange2] = PreyVectorFieldPlotfunc(Popula
 
 % Output variables:
 % Population(i) - rate of change of population i
-    PopulationChange1 = Prey1GrowthRate .* Population1 .* (1 - (Population1 + CompetitionCoefficient1.* Population2) ./ CarryingCapacity1) - PredationRate1 .* Population1 .* PredatorPopulation;
-    PopulationChange2 = Prey2GrowthRate .* Population2 .* (1 - (Population2 + CompetitionCoefficient2.* Population1) ./ CarryingCapacity2) - PredationRate2 .* Population2 .* PredatorPopulation;
+    PopulationChange1 = Prey1GrowthRate .* Population1 .* (1 - (Population1 + CompetitionCoefficient1.* Population2) ./ CarryingCapacity1);
+    PopulationChange2 = Prey2GrowthRate .* Population2 .* (1 - (Population2 + CompetitionCoefficient2.* Population1) ./ CarryingCapacity2);
+    for i = 1:length(PredatorPopulations)
+        PopulationChange1  = PopulationChange1 - Predation1Rates(i) .* Population1 .* (1 - PredatorCompetitionCoefficients(i)) .* PredatorPopulations(i);
+        PopulationChange2  = PopulationChange2 - Predation2Rates(i) .* Population2 .* (1 - PredatorCompetitionCoefficients(i)) .* PredatorPopulations(i);
+    end
     return
 end
 

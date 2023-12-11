@@ -1,0 +1,1 @@
+NewPopulation = PredatorVectorFieldPlotFunc(1,1,1,1,10,20,1,1)
