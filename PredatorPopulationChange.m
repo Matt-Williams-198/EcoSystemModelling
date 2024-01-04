@@ -9,6 +9,8 @@ function [PredatorPopulations] = PredatorPopulationChange(Populations, ...
     PredatorPopulations = zeros(length(Populations),1);
     for i = 1:length(Populations)
         TotalPredation = 0.0;
+        Prey1GrowthConstant(i)
+        Prey2GrowthConstant(i)
         CompetingPredatorsSum = 0.0;
         for j = 1: length(Populations)
             if j ~= i
@@ -23,7 +25,10 @@ function [PredatorPopulations] = PredatorPopulationChange(Populations, ...
         if isnan(CompetitionTerm)
             CompetitionTerm = 1;
         end
-        PredatorPopulations(i) = TimeStep*(Prey1GrowthConstant(i)* (Populations(i)* Prey1Population * CompetitionTerm ) + (Prey2GrowthConstant(i) * Populations(i) * (CompetitionTerm * Prey2Population)) - PredatorMortalityRate(i)* Populations(i));
+        if length(PredatorPopulations) == 1
+            CompetitionTerm = 1;
+        end
+        PredatorPopulations(i) = TimeStep*(Prey1GrowthConstant(i)* (Populations(i)* Prey1Population * CompetitionTerm ) + (Prey2GrowthConstant(i) * Populations(i) * (CompetitionTerm * Prey2Population)) - PredatorMortalityRate(i)* Populations(i))
     end
     return
 end
